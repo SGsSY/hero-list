@@ -4,6 +4,7 @@ import { HeroProfile } from 'component/HeroProfile/HeroProfile';
 import { HeroApi } from 'api/hero';
 import { HeroPageWrapper, FlexContainer } from './styled';
 import { Routes, Route, Link, Outlet } from "react-router-dom";
+import {HeroData} from 'type/hero';
 
 const HeroList = () => {
 
@@ -16,7 +17,7 @@ const HeroList = () => {
     return (
         <>
             <FlexContainer>
-                {heroList.map((hero: any) =>
+                {heroList.map((hero: HeroData) =>
                     <Link to={`${hero.id}`} key={`${hero.id}-${hero.name}`}>
                         <HeroCard
                             id={hero.id}

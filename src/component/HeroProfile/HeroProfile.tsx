@@ -6,8 +6,13 @@ import Remove from '@mui/icons-material/Remove';
 import Button from '@mui/material/Button';
 import { HeroApi } from 'api/hero';
 import { useParams } from 'react-router-dom';
+import {
+    SaveProps,
+    AttributeSettingProps,
+    IconButtonProps
+} from './HeroProfileType';
 
-const Save = (props: any) => {
+const Save = (props: SaveProps) => {
 
     const { handleSaveClick } = props;
 
@@ -24,13 +29,13 @@ const Save = (props: any) => {
     )
 }
 
-const AttributeSetting = (props: any) => {
+const AttributeSetting = (props: AttributeSettingProps) => {
 
     const { handleClick } = props;
 
     const context = useContext(HeroContext);
 
-    const AddButton = (props: any) => {
+    const AddButton = (props: IconButtonProps) => {
         return (
             <IconButton
                 {...props}
@@ -40,7 +45,7 @@ const AttributeSetting = (props: any) => {
         )
     }
 
-    const RemoveButton = (props: any) => {
+    const RemoveButton = (props: IconButtonProps) => {
         return (
             <IconButton
                 {...props}
