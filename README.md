@@ -1,16 +1,16 @@
 # 執行完成的專案
-1.npm i
-2.npm start
+1. npm i
+2. npm start
 可以在 http://localhost:3000 上瀏覽
 
 # 專案的架構、Web 的架構邏輯
 以App.tsx為整個專案的最上層元件，在裡面呼叫HeroPage這個主要的功能頁並導轉到/heroes。在HeroPage設定route先顯示HeroList，點擊HeroCard後再導轉到/heroes/:id顯示HeroProfile
 
 # 第三方 library 的理解，以及他們的功能簡介
-1.Mui - UI library，有多種元件可以快速應用
-2.styled-component - CSS-in-JS的solution
-3.axios - 協助處理api的library，有對應各http method的request function，也可依需求設定不同的instances處理特定的api request
-4.react-router - 處理依不同的路徑顯示不同元件的需求
+1. Mui - UI library，有多種元件可以快速應用
+2. styled-component - CSS-in-JS的solution
+3. axios - 協助處理api的library，有對應各http method的request function，也可依需求設定不同的instances處理特定的api request
+4. react-router - 處理依不同的路徑顯示不同元件的需求
 
 # 你在程式碼中寫註解的原則，遇到什麼狀況會寫註解
 遇到業務邏輯、資料驗證機制時會寫註解
