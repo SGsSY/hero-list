@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, createContext } from 'react';
-import { FlexContainer, FlexItem } from './styled';
+import { FlexContainer, FlexItem, List } from './styled';
 import IconButton from '@mui/material/IconButton';
 import Add from '@mui/icons-material/Add';
 import Remove from '@mui/icons-material/Remove';
@@ -13,12 +13,12 @@ const Save = (props: any) => {
     const context = useContext(HeroContext);
 
     return (
-        <>
+        <div>
             <p>剩餘點數: {context.left}</p>
             <Button
                 onClick={handleSaveClick}
             >儲存</Button>
-        </>
+        </div>
     )
 }
 
@@ -49,7 +49,7 @@ const AttributeSetting = (props: any) => {
     }
 
     return (
-        <ul>
+        <List>
             <li>
                 STR
                 <AddButton onClick={handleClick('str', 'add')} />
@@ -74,7 +74,7 @@ const AttributeSetting = (props: any) => {
                 {context.luk}
                 <RemoveButton onClick={handleClick('luk', 'remove')} />
             </li>
-        </ul>
+        </List>
     )
 }
 
