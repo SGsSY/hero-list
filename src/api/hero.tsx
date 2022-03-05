@@ -1,4 +1,5 @@
 import axios from "axios";
+import {HeroProfileData} from 'type/hero';
 
 const heroInstance = axios.create({
     baseURL: "https://hahow-recruit.herokuapp.com",
@@ -11,7 +12,7 @@ const heroInstance = axios.create({
 export const getHerolist = () => heroInstance.get('/heroes');
 export const getHero = (id: string) => heroInstance.get(`/heroes/${id}`) ;
 export const getHeroProfile = (id: string) => heroInstance.get(`/heroes/${id}/profile`);
-export const patchHeroProfile = (id: string, attr: any) => heroInstance.patch(`/heroes/${id}/profile`, attr);
+export const patchHeroProfile = (id: string, attr: HeroProfileData) => heroInstance.patch(`/heroes/${id}/profile`, attr);
 
 export const HeroApi = {
     getHerolist,
