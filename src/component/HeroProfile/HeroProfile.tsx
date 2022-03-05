@@ -5,6 +5,7 @@ import Add from '@mui/icons-material/Add';
 import Remove from '@mui/icons-material/Remove';
 import Button from '@mui/material/Button';
 import { HeroApi } from 'api/hero';
+import { useParams } from 'react-router-dom';
 
 const Save = (props: any) => {
 
@@ -89,15 +90,17 @@ const defaultValue = {
 const HeroContext = createContext(defaultValue);
 export const HeroProfile = () => {
 
+    const { id } = useParams();
+
     const [heroAttribute, setHeroAttribute] = useState(defaultValue);
-    const [requery, setRequery] = useState(0);
+    // const [requery, setRequery] = useState(0);
 
     useEffect(() => {
-        HeroApi.getHeroProfile("1").then((res) => setHeroAttribute({
+        HeroApi.getHeroProfile(id || '').then((res) => setHeroAttribute({
             ...res.data,
             left: 0
         }));
-    }, [requery]);
+    }, [id]);
 
     const isMoreThanZero = (num: number) => num > 0;
 
