@@ -16,3 +16,8 @@ export const FlexItem = styled.div`
 export const List = styled.ul`
     list-style-type: none;
 `
+
+export const SaveWrapper = styled.div`
+    margin: 8px;
+    padding: 8px;
+`

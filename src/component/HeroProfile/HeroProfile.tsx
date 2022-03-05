@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, createContext } from 'react';
-import { FlexContainer, FlexItem, List } from './styled';
+import { FlexContainer, FlexItem, List, SaveWrapper } from './styled';
 import IconButton from '@mui/material/IconButton';
 import Add from '@mui/icons-material/Add';
 import Remove from '@mui/icons-material/Remove';
@@ -14,12 +14,13 @@ const Save = (props: any) => {
     const context = useContext(HeroContext);
 
     return (
-        <div>
+        <SaveWrapper>
             <p>剩餘點數: {context.left}</p>
             <Button
+                variant='outlined'
                 onClick={handleSaveClick}
             >儲存</Button>
-        </div>
+        </SaveWrapper>
     )
 }
 
@@ -93,7 +94,6 @@ export const HeroProfile = () => {
     const { id } = useParams();
 
     const [heroAttribute, setHeroAttribute] = useState(defaultValue);
-    // const [requery, setRequery] = useState(0);
 
     useEffect(() => {
         HeroApi.getHeroProfile(id || '').then((res) => setHeroAttribute({
@@ -136,8 +136,13 @@ export const HeroProfile = () => {
     }
 
     const handleSaveClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        // todo validate
-        // todo save api
+
+        if (heroAttribute.left !== 0) {
+            alert("You must not have left attribute point");
+            return;
+        }
+
+        id && HeroApi.patchHeroProfile(id, heroAttribute);
     }
 
     return (
