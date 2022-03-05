@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import Add from '@mui/icons-material/Add';
 import Remove from '@mui/icons-material/Remove';
 import Button from '@mui/material/Button';
-import { act } from 'react-dom/test-utils';
+import { HeroApi } from 'api/hero';
 
 const Save = (props: any) => {
 
@@ -14,7 +14,7 @@ const Save = (props: any) => {
 
     return (
         <>
-            <p>剩餘點數: {context.LEFT}</p>
+            <p>剩餘點數: {context.left}</p>
             <Button
                 onClick={handleSaveClick}
             >儲存</Button>
@@ -52,38 +52,38 @@ const AttributeSetting = (props: any) => {
         <ul>
             <li>
                 STR
-                <AddButton onClick={handleClick('STR', 'add')} />
-                {context.STR}
-                <RemoveButton onClick={handleClick('STR', 'remove')} />
+                <AddButton onClick={handleClick('str', 'add')} />
+                {context.str}
+                <RemoveButton onClick={handleClick('str', 'remove')} />
             </li>
             <li>
                 INT
-                <AddButton onClick={handleClick('INT', 'add')} />
-                {context.INT}
-                <RemoveButton onClick={handleClick('INT', 'remove')} />
+                <AddButton onClick={handleClick('int', 'add')} />
+                {context.int}
+                <RemoveButton onClick={handleClick('int', 'remove')} />
             </li>
             <li>
                 AGI
-                <AddButton onClick={handleClick('AGI', 'add')} />
-                {context.AGI}
-                <RemoveButton onClick={handleClick('AGI', 'remove')} />
+                <AddButton onClick={handleClick('agi', 'add')} />
+                {context.agi}
+                <RemoveButton onClick={handleClick('agi', 'remove')} />
             </li>
             <li>
                 LUK
-                <AddButton onClick={handleClick('LUK', 'add')} />
-                {context.LUK}
-                <RemoveButton onClick={handleClick('LUK', 'remove')} />
+                <AddButton onClick={handleClick('luk', 'add')} />
+                {context.luk}
+                <RemoveButton onClick={handleClick('luk', 'remove')} />
             </li>
         </ul>
     )
 }
 
 const defaultValue = {
-    "STR": 0,
-    "INT": 0,
-    "AGI": 0,
-    "LUK": 0,
-    "LEFT": 0
+    "str": 0,
+    "int": 0,
+    "agi": 0,
+    "luk": 0,
+    "left": 0
 };
 
 const HeroContext = createContext(defaultValue);
@@ -93,17 +93,20 @@ export const HeroProfile = () => {
     const [requery, setRequery] = useState(0);
 
     useEffect(() => {
-
+        HeroApi.getHeroProfile("1").then((res) => setHeroAttribute({
+            ...res.data,
+            left: 0
+        }));
     }, [requery]);
 
     const isMoreThanZero = (num: number) => num > 0;
 
-    const handleClick = (attr: "STR" | "INT" | "AGI" | "LUK", action: string) => (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const handleClick = (attr: "str" | "int" | "agi" | "luk", action: string) => (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 
         if (action === "add") {
 
             // check LEFT more than zero
-            if (!isMoreThanZero(heroAttribute.LEFT)) {
+            if (!isMoreThanZero(heroAttribute.left)) {
                 alert("You don't have left point to add hero attribute");
                 return;
             }
@@ -111,12 +114,12 @@ export const HeroProfile = () => {
             setHeroAttribute({
                 ...heroAttribute,
                 [attr]: heroAttribute[attr] + 1,
-                LEFT: heroAttribute.LEFT - 1
+                left: heroAttribute.left - 1
             })
         } else if (action === "remove") {
 
-            // check attribute more than zero
-            if (!isMoreThanZero(heroAttribute[attr])) {
+            // check if removed then the attribute is still more than zero
+            if (!isMoreThanZero(heroAttribute[attr] - 1)) {
                 alert(`You must have one point to hero attribute - ${attr}`);
                 return;
             }
@@ -124,7 +127,7 @@ export const HeroProfile = () => {
             setHeroAttribute({
                 ...heroAttribute,
                 [attr]: heroAttribute[attr] - 1,
-                LEFT: heroAttribute.LEFT + 1
+                left: heroAttribute.left + 1
             })
         }
     }

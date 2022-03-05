@@ -8,10 +8,10 @@ const heroInstance = axios.create({
     },
 });
 
-export const getHerolist = () => heroInstance.get('/heros');
-export const getHero = (id: string) => heroInstance.get(`/heros/${id}`) ;
-export const getHeroProfile = (id: string) => heroInstance.get(`/heros/${id}/profile`);
-export const patchHeroProfile = (id: string, attr: any) => heroInstance.patch(`/hero/${id}/profile`, attr);
+export const getHerolist = () => heroInstance.get('/heroes');
+export const getHero = (id: string) => heroInstance.get(`/heroes/${id}`) ;
+export const getHeroProfile = (id: string) => heroInstance.get(`/heroes/${id}/profile`);
+export const patchHeroProfile = (id: string, attr: any) => heroInstance.patch(`/heroes/${id}/profile`, attr);
 
 export const HeroApi = {
     getHerolist,
