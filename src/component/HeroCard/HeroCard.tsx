@@ -13,11 +13,13 @@ export const HeroCard = (props: HeroCardProps) => {
     return (
         <Card
             key={`${id}-${name}`}
-            sx={{maxWidth: 140}}
+            sx={{
+                maxWidth: 240,
+                margin: 1,
+            }}
         >
             <CardMedia
-                height={140}
-                width={140}
+                height={240}
                 component='img'
                 alt={name}
                 image={image}
